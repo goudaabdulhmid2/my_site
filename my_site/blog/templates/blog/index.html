@@ -1,10 +1,147 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
+{% load static %}
 
-
-{% block title %}My Blog{% endblock %} 
-
+{% block title %}Hamido Blog{% endblock %}
 
 {% block content %}
-<h1>Blog</h1>
 
+
+<!-- Hero Section -->
+<header class="hero">
+    <span class="hero-supertext">Developer Diary</span>
+    <h1 class="hero-title">Calm, practical writing about <span class="text-gradient">code & tech.</span></h1>
+    <p class="hero-subtitle">Hi, I am Abdulhamid. I share lessons, experiments, and ideas from my journey in software and technology.</p>
+    
+    <div class="hero-actions">
+        <a href="#latest" class="btn btn-primary">Read Latest</a>
+        <a href="#about" class="btn btn-secondary">About Me</a>
+    </div>
+</header>
+
+<!-- Main Split Layout -->
+<div class="split-layout">
+    
+    <!-- Left Column: Posts -->
+    <main id="latest">
+        <div class="section-head">
+            <h2 class="section-title"><span class="text-gradient-alt">Latest</span> Posts</h2>
+            <p style="color: var(--text-secondary)">Fresh writing on learning and building.</p>
+        </div>
+        
+        <div class="posts-grid">
+            {% for post in posts %}
+                {% if forloop.first %}
+                <!-- Featured Post -->
+                <article class="post-card featured-post" style="grid-column: 1 / -1;">
+                    <div class="post-img-wrapper">
+                        <img src="{% static "blog/images/"|add:post.image %}" alt="{{ post.title }}" class="post-img" />
+                    </div>
+                    <div class="post-content">
+                        <span class="post-tag">{{ post.tag }}</span>
+                        <h3 class="post-title"><a href="{% url 'post-detail-page' post.slug %}">{{ post.title }}</a></h3>
+                        <p class="post-desc">{{ post.excerpt }}</p>
+                    </div>
+                </article>
+                {% else %}
+                <!-- Mini Post -->
+                <article class="post-card">
+                    <div class="post-img-wrapper" style="height: 200px;">
+                        <img src="{% static "blog/images/"|add:post.image %}" alt="{{ post.title }}" class="post-img" />
+                    </div>
+                    <div class="post-content">
+                        <span class="post-tag">{{ post.tag }}</span>
+                        <h3 class="post-title"><a href="{% url 'post-detail-page' post.slug %}">{{ post.title }}</a></h3>
+                        <p class="post-desc">{{ post.excerpt }}</p>
+                    </div>
+                </article>
+                {% endif %}
+            {% empty %}
+                <p style="color: var(--text-secondary);">No latest posts available.</p>
+            {% endfor %}
+        </div>
+    </main>
+
+    <!-- Right Column: Sidebar (About) -->
+    <aside class="sidebar-sticky" id="about">
+        <div class="glass-panel">
+            <div class="author-profiler">
+                <img src="{% static "blog/images/Hamido.jpg" %}" alt="Hamido" class="author-img">
+                <div>
+                    <h3 class="brand-text text-gradient" style="margin: 0;">Hamido</h3>
+                    <span style="font-size: 0.85rem; color: var(--text-secondary)">Author & Developer</span>
+                </div>
+            </div>
+            
+            <p>Programming enthusiast sharing practical ideas about software, growth, and technology.</p>
+            
+            <ul class="feature-list">
+                <li>Focused on backend development</li>
+                <li>Clear technical writing</li>
+                <li>Learning in public</li>
+            </ul>
+            
+            <div class="status-card">
+                <div class="status-label">
+                    <div class="status-dot"></div>
+                    Current Focus
+                </div>
+                <p style="font-size: 0.9rem; margin: 0; color: var(--text-secondary);">
+                    Working on Django apps, UI design, and new posts.
+                </p>
+            </div>
+        </div>
+    </aside>
+</div>
+
+<!-- Values Section -->
+<section style="margin-top: 4rem;">
+    <div class="glass-panel">
+        <h2 class="section-title"><span class="text-gradient">Core Values</span></h2>
+        <p style="color: var(--text-secondary); max-width: 600px; margin-bottom: 2rem;">
+            Through this blog, I break down difficult topics into practical, actionable steps using real-world projects.
+        </p>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <h4 class="brand-text">Clarity First</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Practical application over unnecessary complexity.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🛠️</div>
+                <h4 class="brand-text">Real Projects</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Lessons from building and shipping working things.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🌱</div>
+                <h4 class="brand-text">Long-term Growth</h4>
+                <p style="font-size: 0.9rem; color: var(--text-secondary);">Sustainable progress over quick temporary hacks.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Media Query for the featured post styling -->
+<style>
+@media (min-width: 768px) {
+    .featured-post {
+        flex-direction: row;
+        align-items: stretch;
+    }
+    .featured-post .post-img-wrapper {
+        width: 45%;
+        height: auto;
+    }
+    .featured-post .post-img {
+        border-radius: var(--radius-md) 0 0 var(--radius-md);
+    }
+    .featured-post .post-content {
+        justify-content: center;
+        padding: 3rem;
+    }
+    .featured-post .post-title {
+        font-size: 1.75rem;
+    }
+}
+</style>
 {% endblock %}

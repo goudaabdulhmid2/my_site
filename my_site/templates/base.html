@@ -1,10 +1,32 @@
-<html>
-  <head>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Site{% endblock %}</title>
+    
+    <!-- Modern Fonts: Inter for readability, Outfit for display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     {% block css_files %}{% endblock %}
-  </head>
+</head>
+<body>
+    <!-- Dynamic Background Effects -->
+    <div class="bg-glow"></div>
+    <div class="bg-glow bg-glow-secondary"></div>
+    <div class="bg-grid"></div>
 
-  <body>
-    {% block content %} {% endblock %}
-  </body>
+    <!-- Core App Shell -->
+    <div class="app-container">
+        {% include 'includes/navbar.html' %}
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Any necessary global scripts -->
+    {% block js_files %}{% endblock %}
+</body>
 </html>

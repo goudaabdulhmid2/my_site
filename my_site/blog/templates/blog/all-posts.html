@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}All Posts - Hamido Blog{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<header class="section-head" style="margin-top: 2rem; margin-bottom: 3rem; text-align: center;">
+    <h1 class="hero-title" style="font-size: 3rem;">All <span class="text-gradient">Posts</span></h1>
+    <p style="color: var(--text-secondary); font-size: 1.15rem; max-width: 600px; margin: 0 auto;">
+        Browse through all the articles, notes, and lessons I've shared.
+    </p>
+</header>
+
+<!-- Main Grid -->
+<div class="posts-grid" style="grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));">
+    
+    {% for post in posts %}
+    <article class="post-card">
+        <div class="post-img-wrapper" style="height: 220px;">
+            <img src="{% static "blog/images/"|add:post.image %}" alt="{{ post.title }}" class="post-img" />
+        </div>
+        <div class="post-content">
+            <span class="post-tag">{{ post.tag }}</span>
+            <h3 class="post-title"><a href="{% url "post-detail-page" post.slug %}">{{ post.title }}</a></h3>
+            <p class="post-desc">{{ post.excerpt }}</p>
+        </div>
+    </article>
+
+   {% empty %}
+                <p style="color: var(--text-secondary);">No latest posts available.</p>
+
+    {% endfor %}
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+<nav class="main-nav">
+    <a href="{% url "starting-page" %}" class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-text text-gradient">Hamido Blog</span>
+    </a>
+    
+    <div class="nav-links">
+        <a href="{% url "posts-page" %}" class="nav-item">All Posts</a>
+        <a href="/#about" class="nav-item">About</a>
+        <button id="theme-toggle" class="btn-theme-toggle" aria-label="Toggle Theme">
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon" style="display: none;">🌙</span>
+        </button>
+        <a href="/#latest" class="btn btn-primary">Start Reading</a>
+    </div>
+    
+    <button class="nav-toggle">☰</button>
+</nav>
+
+<script>
+    const themeBtn = document.getElementById('theme-toggle');
+    const sunIcon = document.querySelector('.sun-icon');
+    const moonIcon = document.querySelector('.moon-icon');
+
+    // Default to dark, check local storage
+    const storedTheme = localStorage.getItem('theme') || 'dark';
+
+    function setTheme(theme) {
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'inline';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            sunIcon.style.display = 'inline';
+            moonIcon.style.display = 'none';
+        }
+    }
+
+    setTheme(storedTheme);
+
+    themeBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+</script>
