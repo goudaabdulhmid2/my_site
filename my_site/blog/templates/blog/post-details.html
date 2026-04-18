@@ -6,65 +6,29 @@
 {% block content %}
 <article class="glass-panel" style="max-width: 1000px; margin: 0 auto;">
     <div class="article-header">
-        <span class="post-tag mb-3 d-inline-block">Featured Story</span>
-        <h1 class="hero-title" style="margin-bottom: 1rem;">Mount <span class="text-gradient">Hiking</span></h1>
-        
+        <span class="post-tag mb-3 d-inline-block">{{ post.tag }}</span>
+        <h1 class="hero-title" style="margin-bottom: 1rem;">{{ post.title }}</h1>
+
         <div class="author-profiler" style="justify-content: center; margin-top: 2rem;">
             <img src="{% static "blog/images/Hamido.jpg" %}" alt="Hamido" class="author-img" style="width: 48px; height: 48px;">
             <div style="text-align: left;">
-                <p style="margin: 0; font-weight: bold; color: var(--text-primary);">Hamido</p>
-                <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">April 18, 2026 • 5 min read</p>
+                <p style="margin: 0; font-weight: bold; color: var(--text-primary);">{{ post.author|title }}</p>
+                <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">{{ post.date }} • {{ post.read_time_minutes }} min read</p>
             </div>
         </div>
     </div>
 
     <!-- Hero Image -->
-    <img src="{% static "blog/images/mountains.jpg" %}" alt="Mountain Hiking" class="article-hero">
+    <img src="{% static "blog/images/"|add:post.image %}" alt="{{ post.title }}" class="article-hero">
 
     <!-- Article Content -->
     <div class="article-body">
         <p class="lead" style="font-size: 1.25rem; color: var(--text-primary); font-weight: 500;">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate saepe nesciunt provident error nam. This guide explores the serenity and challenges of mountain hiking.
+            {{ post.excerpt }}
         </p>
 
-        <h2>The Preparation Phase</h2>
-        <p>Before you even step foot on the trail, the most critical part of hiking begins at home. It's not just about throwing some snacks in a bag; it's about anticipating the unpredictability of nature.</p>
-        
-        <p>You need to ensure you have the correct gear:</p>
-        <ul style="list-style: disc; padding-left: 2rem; margin-bottom: 1.5rem; color: var(--text-secondary);">
-            <li>Sturdy, well-broken-in hiking boots</li>
-            <li>A reliable hydration system (camelback or rigid bottles)</li>
-            <li>Weather-appropriate layering systems</li>
-            <li>Navigation tools (physical map and compass, not just a phone)</li>
-        </ul>
-
-        <blockquote>
-            "The mountains are calling and I must go, but not without my emergency thermal blanket and a compass."
-        </blockquote>
-
-        <h2>Understanding the Trail</h2>
-        <p>Once you arrive at the base, it's easy to get overwhelmed by excitement and rush upward. However, pacing is everything. Your heart rate needs to adapt to the incline gradually.</p>
-        
-        <p>Many beginners make the mistake of sprinting the first mile, only to burn out before the scenic views. Remember, altitude changes everything. The air gets thinner, and your muscles work harder to process oxygen.</p>
-
-        <h3>A Dev's Perspective on Hiking</h3>
-        <p>Interestingly, hiking feels a lot like software development. You start with a clear goal (the peak / the deployment), but along the way, you encounter bugs (literal bugs, or fallen trees on the path). You have to refactor your route, take breaks, and sometimes read the documentation (trail markers).</p>
-
-        <pre><code>def hike_mountain(energy_level, elevation):
-    while energy_level > 0 and elevation < PEAK:
-        take_step()
-        energy_level -= 1
-        elevation += 10
-        
-        if energy_level < 20:
-            drink_water()
-            eat_snack()
-            
-    if elevation >= PEAK:
-        return "Enjoy the view!"
-    return "Time to head back."</code></pre>
-
-        <p>In both coding and hiking, the feeling of reaching the finish line makes all the struggling worthwhile. The key is consistency over intensity.</p>
+        <!-- Dynamic Content -->
+        {{ post.content|linebreaks }}
     </div>
 
     <!-- Footer Action -->

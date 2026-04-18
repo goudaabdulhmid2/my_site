@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}404 - Page Not Found{% endblock %}
+
+{% block content %}
+<div class="glass-panel" style="text-align: center; padding: 5rem 2rem; margin: 6rem auto; max-width: 600px; animation: fadeUp 0.8s ease-out;">
+    
+    <h1 style="font-size: 8rem; margin: 0; line-height: 1; letter-spacing: -0.05em;" class="text-gradient">404</h1>
+    <h2 style="font-size: 2rem; margin-top: 1rem; margin-bottom: 1.5rem; color: var(--text-primary);">Lost in Space</h2>
+    
+    <p style="color: var(--text-secondary); margin-bottom: 3rem; font-size: 1.15rem; line-height: 1.6;">
+        Whoops! It looks like you've drifted out of orbit. The article or page you are looking for has either been moved, deleted, or never existed in the first place.
+    </p>
+
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/" class="btn btn-primary" style="padding: 0.85rem 2rem;">Return Home</a>
+        <a href="/posts" class="btn btn-secondary" style="padding: 0.85rem 2rem;">Browse All Posts</a>
+    </div>
+
+</div>
+{% endblock %}

@@ -32,6 +32,12 @@ def posts(request):
         "posts": all_posts
     })
 
-def post_detail(request, slug):
 
-    return render(request,"blog/post-details.html")
+def post_detail(request, slug):
+    all_posts = get_all_posts()
+
+    post = next((post for post in all_posts if post["slug"] == slug), None)
+
+    return render(request,"blog/post-details.html", context={
+        "post":post
+    })
