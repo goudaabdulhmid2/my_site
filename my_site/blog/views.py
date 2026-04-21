@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 import json
 from pathlib import Path
+
+from .models import Post
 
 # Create your views here
 # read data from json
@@ -17,27 +19,24 @@ def get_date(post):
     return post["date"]
 
 def starting_page(request):
-    all_posts = get_all_posts()
-    sorted_posts = sorted(all_posts, key=get_date, reverse=True)
-    least_three_posts = sorted_posts[:3]
-
+    least_three_posts = Post.objects.all().order_by("-date")[:3]
+    
     return render(request, 'blog/index.html', context={
         "posts": least_three_posts
     })
 
 
 def posts(request):
-    all_posts = get_all_posts()
+    all_posts = Post.objects.all().order_by("-date")
     return render(request, 'blog/all-posts.html', context={
         "posts": all_posts
     })
 
 
 def post_detail(request, slug):
-    all_posts = get_all_posts()
-
-    post = next((post for post in all_posts if post["slug"] == slug), None)
+    post = get_object_or_404(Post,slug=slug)
 
     return render(request,"blog/post-details.html", context={
-        "post":post
+        "post":post,
+        "post_tags":post.tags.all()
     })

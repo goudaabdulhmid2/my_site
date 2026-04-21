@@ -6,13 +6,16 @@
 {% block content %}
 <article class="glass-panel" style="max-width: 1000px; margin: 0 auto;">
     <div class="article-header">
-        <span class="post-tag mb-3 d-inline-block">{{ post.tag }}</span>
+        {% for tag in post_tags  %}
+            <span class="post-tag">{{ tag.caption }}</span> 
+        {% endfor %}
+        
         <h1 class="hero-title" style="margin-bottom: 1rem;">{{ post.title }}</h1>
 
         <div class="author-profiler" style="justify-content: center; margin-top: 2rem;">
             <img src="{% static "blog/images/Hamido.jpg" %}" alt="Hamido" class="author-img" style="width: 48px; height: 48px;">
             <div style="text-align: left;">
-                <p style="margin: 0; font-weight: bold; color: var(--text-primary);">{{ post.author|title }}</p>
+                <p style="margin: 0; font-weight: bold; color: var(--text-primary);"> <a  href="mailto:{{ post.author.email }}"> {{ post.author|title }} </a></p>
                 <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">{{ post.date }} • {{ post.read_time_minutes }} min read</p>
             </div>
         </div>
