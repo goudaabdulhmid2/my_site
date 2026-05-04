@@ -3,6 +3,47 @@
 
 {% block title %}Mount Hiking - Hamido Blog{% endblock %}
 
+{% block css_files %}
+<style>
+    .comment-form input[type="text"],
+    .comment-form input[type="email"],
+    .comment-form textarea {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-sm);
+        color: var(--text-primary);
+        font-family: var(--font-body);
+        transition: var(--transition-smooth);
+    }
+
+    [data-theme="light"] .comment-form input[type="text"],
+    [data-theme="light"] .comment-form input[type="email"],
+    [data-theme="light"] .comment-form textarea {
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+        outline: none;
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 2px var(--accent-glow);
+    }
+
+    .comment-form textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+    
+    @media (max-width: 600px) {
+        .comment-grid {
+            grid-template-columns: 1fr !important;
+        }
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <article class="glass-panel" style="max-width: 1000px; margin: 0 auto;">
     <div class="article-header">
@@ -42,5 +83,67 @@
             <button class="btn btn-primary">Share Article</button>
         </div>
     </div>
+
+    <!-- Comments Section -->
+    <section style="margin-top: 5rem; padding-top: 3rem; border-top: 1px solid var(--border-subtle);">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+            <h3 class="brand-text" style="font-size: 1.75rem; margin: 0;">Comments <span style="color: var(--accent-secondary); font-size: 1.25rem;">({{ post.comments.count }})</span></h3>
+        </div>
+        
+        <!-- Display Comments -->
+        <div class="comments-list" style="display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 4rem;">
+            {% for comment in post.comments.all|dictsortreversed:"id" %}
+                <div class="glass-panel" style="padding: 1.5rem; border-left: 4px solid var(--accent-primary);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary)); display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.1rem;">
+                                {{ comment.user_name|make_list|first|upper }}
+                            </div>
+                            <span style="font-weight: 700; color: var(--text-primary); font-size: 1.1rem;">{{ comment.user_name }}</span>
+                        </div>
+                    </div>
+                    <p style="color: var(--text-secondary); margin: 0; line-height: 1.7; font-size: 1.05rem;">{{ comment.text|linebreaksbr }}</p>
+                </div>
+            {% empty %}
+                <div class="glass-panel" style="padding: 3rem; text-align: center; border: 1px dashed var(--border-hover); background: rgba(0,0,0,0.1);">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">💬</div>
+                    <h4 style="color: var(--text-primary); margin-bottom: 0.5rem; font-size: 1.25rem;">No comments yet</h4>
+                    <p style="color: var(--text-secondary); margin: 0;">Be the first to share your thoughts on this article!</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Add Comment Form -->
+        <div class="glass-panel" style="padding: 2.5rem; background: linear-gradient(145deg, var(--bg-surface), rgba(0,0,0,0.2)); border: 1px solid var(--accent-glow);">
+            <h4 class="brand-text" style="margin-bottom: 2rem; font-size: 1.5rem;">Leave a Reply</h4>
+            <form action="{% url 'post-detail-page' post.slug %}" method="POST" class="comment-form">
+                {% csrf_token %}
+                <div class="comment-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="{{ comment_form.user_name.id_for_label }}" style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">{{ comment_form.user_name.label }}</label>
+                        {{ comment_form.user_name }}
+                        {% if comment_form.user_name.errors %}
+                            <div style="color: #ef4444; font-size: 0.85rem; margin-top: 0.25rem;">{{ comment_form.user_name.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="{{ comment_form.user_email.id_for_label }}" style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">{{ comment_form.user_email.label }}</label>
+                        {{ comment_form.user_email }}
+                        {% if comment_form.user_email.errors %}
+                            <div style="color: #ef4444; font-size: 0.85rem; margin-top: 0.25rem;">{{ comment_form.user_email.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 2rem;">
+                    <label for="{{ comment_form.text.id_for_label }}" style="color: var(--text-secondary); font-size: 0.95rem; font-weight: 500;">{{ comment_form.text.label }}</label>
+                    {{ comment_form.text }}
+                    {% if comment_form.text.errors %}
+                        <div style="color: #ef4444; font-size: 0.85rem; margin-top: 0.25rem;">{{ comment_form.text.errors }}</div>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1rem;">Post Comment</button>
+            </form>
+        </div>
+    </section>
 </article>
 {% endblock %}
