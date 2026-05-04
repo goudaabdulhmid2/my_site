@@ -18,7 +18,7 @@
     {% for post in posts %}
     <article class="post-card">
         <div class="post-img-wrapper" style="height: 220px;">
-            <img src="{% static "blog/images/"|add:post.image %}" alt="{{ post.title }}" class="post-img" />
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-img" />
         </div>
         <div class="post-content">
             <span class="post-tag">{{ post.tag }}</span>

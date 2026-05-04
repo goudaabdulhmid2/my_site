@@ -13,7 +13,7 @@
         <h1 class="hero-title" style="margin-bottom: 1rem;">{{ post.title }}</h1>
 
         <div class="author-profiler" style="justify-content: center; margin-top: 2rem;">
-            <img src="{% static "blog/images/Hamido.jpg" %}" alt="Hamido" class="author-img" style="width: 48px; height: 48px;">
+            <img src="{{ post.image.url }}" alt="Hamido" class="author-img" style="width: 48px; height: 48px;">
             <div style="text-align: left;">
                 <p style="margin: 0; font-weight: bold; color: var(--text-primary);"> <a  href="mailto:{{ post.author.email }}"> {{ post.author|title }} </a></p>
                 <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">{{ post.date }} • {{ post.read_time_minutes }} min read</p>
@@ -22,7 +22,7 @@
     </div>
 
     <!-- Hero Image -->
-    <img src="{% static "blog/images/"|add:post.image %}" alt="{{ post.title }}" class="article-hero">
+    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="article-hero">
 
     <!-- Article Content -->
     <div class="article-body">

@@ -34,7 +34,7 @@
                 <!-- Featured Post -->
                 <article class="post-card featured-post" style="grid-column: 1 / -1;">
                     <div class="post-img-wrapper">
-                        <img src="{% static "blog/images/"|add:post.image %}" alt="{{ post.title }}" class="post-img" />
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-img" />
                     </div>
                     <div class="post-content">
                         <span class="post-tag">{{ post.tag }}</span>
@@ -46,7 +46,7 @@
                 <!-- Mini Post -->
                 <article class="post-card">
                     <div class="post-img-wrapper" style="height: 200px;">
-                        <img src="{% static "blog/images/"|add:post.image %}" alt="{{ post.title }}" class="post-img" />
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-img" />
                     </div>
                     <div class="post-content">
                         <span class="post-tag">{{ post.tag }}</span>
