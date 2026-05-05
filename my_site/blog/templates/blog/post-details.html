@@ -4,44 +4,7 @@
 {% block title %}Mount Hiking - Hamido Blog{% endblock %}
 
 {% block css_files %}
-<style>
-    .comment-form input[type="text"],
-    .comment-form input[type="email"],
-    .comment-form textarea {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid var(--border-subtle);
-        border-radius: var(--radius-sm);
-        color: var(--text-primary);
-        font-family: var(--font-body);
-        transition: var(--transition-smooth);
-    }
-
-    [data-theme="light"] .comment-form input[type="text"],
-    [data-theme="light"] .comment-form input[type="email"],
-    [data-theme="light"] .comment-form textarea {
-        background: rgba(255, 255, 255, 0.5);
-    }
-
-    .comment-form input:focus,
-    .comment-form textarea:focus {
-        outline: none;
-        border-color: var(--accent-primary);
-        box-shadow: 0 0 0 2px var(--accent-glow);
-    }
-
-    .comment-form textarea {
-        resize: vertical;
-        min-height: 120px;
-    }
-    
-    @media (max-width: 600px) {
-        .comment-grid {
-            grid-template-columns: 1fr !important;
-        }
-    }
-</style>
+<link rel="stylesheet" href="{% static 'blog/blog.css' %}">
 {% endblock %}
 
 {% block content %}

@@ -3,7 +3,12 @@
 
 {% block title %}Hamido Blog{% endblock %}
 
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'blog/blog.css' %}">
+{% endblock %}
+
 {% block content %}
+
 
 
 <!-- Hero Section -->
@@ -121,27 +126,4 @@
     </div>
 </section>
 
-<!-- Additional Media Query for the featured post styling -->
-<style>
-@media (min-width: 768px) {
-    .featured-post {
-        flex-direction: row;
-        align-items: stretch;
-    }
-    .featured-post .post-img-wrapper {
-        width: 45%;
-        height: auto;
-    }
-    .featured-post .post-img {
-        border-radius: var(--radius-md) 0 0 var(--radius-md);
-    }
-    .featured-post .post-content {
-        justify-content: center;
-        padding: 3rem;
-    }
-    .featured-post .post-title {
-        font-size: 1.75rem;
-    }
-}
-</style>
 {% endblock %}
