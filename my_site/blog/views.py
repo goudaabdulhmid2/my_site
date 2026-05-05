@@ -25,8 +25,6 @@ class PostsView(ListView):
     ordering = ["-date"]
     context_object_name = "posts"
 
-
-
 class PostView(View):
 
     def is_saved_for_later(self, request, post_id):
@@ -44,7 +42,8 @@ class PostView(View):
         comments = post.comments.all().order_by("-date")
         count = post.comments.count()
         
-      
+        stored_posts = request.session.get("stored_posts", [])
+        is_saved_for_later = post.id in stored_posts
 
         return render(request, "blog/post-details.html", {
             "post": post,
@@ -72,6 +71,8 @@ class PostView(View):
         comments = post.comments.all().order_by("-date")
         count = post.comments.count()
         
+        stored_posts = request.session.get("stored_posts", [])
+        is_saved_for_later = post.id in stored_posts
 
         return render(request, "blog/post-details.html", {
             "post": post,
@@ -107,9 +108,3 @@ class ReadLaterView(View):
             "posts": posts,
             "has_posts": len(posts) > 0
         })
-
-        
-            
-
-        
-    

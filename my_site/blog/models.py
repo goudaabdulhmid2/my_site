@@ -1,9 +1,6 @@
 from django.db import models
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 from django.utils.text import slugify
-
-# Create your models here.
-
 class Tag(models.Model):
     caption = models.CharField(max_length=20)
 
