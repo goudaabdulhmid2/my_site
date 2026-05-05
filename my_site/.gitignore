@@ -2,7 +2,6 @@
 .vscode
 __pycache__
 .prettierignore
-images
 uploads
 *.pyc
 db.sqlite3
