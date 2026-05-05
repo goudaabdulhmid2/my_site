@@ -1,7 +1,8 @@
-# Hamido Blog - Django Learning Project
+# Python and Django Learning Projects
 
-Welcome to **Hamido Blog**, a personal developer blog platform built with Python and Django.  
-This project represents a key milestone in my journey toward becoming a backend software engineer.
+A collection of hands-on projects built throughout my journey learning **Python and Django**, combining concepts from the **ITI 9-Month Program** and the **Academind (Maximilian Schwarzmüller) Udemy course**.
+
+This repository showcases practical implementations of backend development concepts, including web application architecture, database design, Django ORM, and production deployment.
 
 ## 🎓 My Learning Journey
 
