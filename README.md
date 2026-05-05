@@ -1,4 +1,4 @@
-# 🚀 Python and Django Learning Projects
+# Python and Django Learning Projects
 
 A collection of hands-on projects built throughout my journey learning **Python and Django**, combining knowledge from the **ITI 9-Month Program** and the **Academind (Maximilian Schwarzmüller) course**.
 
@@ -12,7 +12,7 @@ This repository reflects my progression from learning fundamentals to building r
 
 ---
 
-## 🧠 Key Concepts & What I Learned
+## Key Concepts & What I Learned
 
 Throughout this journey, I gained practical experience in:
 
@@ -69,7 +69,7 @@ Throughout this journey, I gained practical experience in:
 
 ---
 
-## 🧠 Architecture Highlights
+## Architecture Highlights
 
 - Clear separation between **static** and **media**
 - Session-based state management
@@ -131,7 +131,7 @@ As part of my learning path:
 
 ---
 
-## 🚀 How to Run Locally
+## How to Run Locally
 
 ```bash
 git clone <repo-url>
