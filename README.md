@@ -31,19 +31,58 @@ To further solidify my skills, I took the Udemy course _"Learn how to build web 
 
 ## 🧠 Key Concepts & What I Learned
 
-Through these projects, I gained hands-on experience with:
+Throughout my journey learning Python and Django (via ITI and hands-on practice), I gained practical experience in:
 
-- Django **MVT Architecture**
-- **Class-Based Views vs Function-Based Views**
-- Django ORM & query optimization (`select_related`, `prefetch_related`)
-- **Static vs Media files handling**
-- **Sessions & Cookies**
-- **CSRF Protection & Security**
-- **Environment Variables & Production Settings**
-- **Deployment on Railway**
-- Working with **PostgreSQL in production**
+### 🔹 Django Fundamentals
 
----
+- Django MVT Architecture
+- Class-Based Views vs Function-Based Views
+- URL routing and clean URL design using slugs
+
+### 🔹 Database & ORM
+
+- Designing relational databases
+- Working with Django ORM
+- Query optimization using `select_related` and `prefetch_related`
+
+### 🔹 Backend Engineering Concepts
+
+- Building scalable application structure
+- Thinking in terms of full system flow (not isolated features)
+- Handling validation and edge cases
+
+### 🔹 Authentication & Authorization
+
+- Implementing authentication systems
+- Working with JWT (JSON Web Tokens)
+- Managing roles using:
+  - Role field approach
+  - Django Groups & Permissions
+
+### 🔹 APIs Development
+
+- Understanding RESTful API principles
+- Building APIs using Django REST Framework (DRF)
+
+### 🔹 State Management
+
+- Working with Sessions & Cookies
+- Implementing features like "Read Later"
+
+### 🔹 Static & Media Files
+
+- Understanding the difference between static and media files
+- Handling static files in development vs production
+
+### 🔹 Deployment & Production
+
+- Deploying Django apps on Railway
+- Using PostgreSQL in production
+- Managing environment variables
+- Solving production issues:
+  - CSRF errors
+  - ALLOWED_HOSTS configuration
+  - Static files serving with WhiteNoise
 
 ## 🧠 Architecture Highlights
 
